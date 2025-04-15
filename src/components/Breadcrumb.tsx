@@ -1,9 +1,22 @@
 import { NavLink } from "react-router";
 
-const Breadcrumb = () => {
+export interface IBreadcrumb {
+  text: string;
+  link: string;
+}
+interface BreadcrumbProps {
+  breadcrumbs?: IBreadcrumb[];
+}
+
+const Breadcrumb = ({ breadcrumbs }: BreadcrumbProps) => {
   return (
     <div>
-      <NavLink to="/">Home</NavLink> -&gt; <NavLink to="/news">News</NavLink>
+      {breadcrumbs?.map((bc, i, arr) => (
+        <span key={i}>
+          <NavLink to={bc.link}>{bc.text}</NavLink>{" "}
+          {i !== arr.length - 1 && "->"}
+        </span>
+      ))}
     </div>
   );
 };

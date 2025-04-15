@@ -1,11 +1,13 @@
 import { NavLink, useLocation } from "react-router";
-import Breadcrumb from "../components/Breadcrumb";
+import Breadcrumb, { IBreadcrumb } from "../components/Breadcrumb";
+import { useState } from "react";
 
 const Page = () => {
   const location = useLocation();
+  const [breadcrumbs, setBreadcrumbs] = useState<IBreadcrumb[]>();
   return (
     <div>
-      <Breadcrumb />
+      <Breadcrumb breadcrumbs={breadcrumbs} />
       <h3>Current page: {location.pathname}</h3>
       <ul>
         <li>
